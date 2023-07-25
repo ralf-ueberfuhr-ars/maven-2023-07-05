@@ -1,0 +1,12 @@
+package de.ars.schulung.maven;
+
+import org.junit.jupiter.api.Test;
+
+public class MyFirstTest {
+
+    @Test
+    void testSomething() {
+
+    }
+
+}
