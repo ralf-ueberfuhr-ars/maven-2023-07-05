@@ -75,6 +75,11 @@
                         </archive>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.10</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -84,9 +89,31 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
+                        <!-- spätestmöglicher Zeitpunkt vor der Repo-Ablage -->
+                        <!-- Standard ist "package" -->
                         <phase>verify</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- Phase: initialize -->
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <!-- vor dem Paketieren, damit es mit verpackt und ins Repo abgelegt werden kann -->
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
                         </goals>
                     </execution>
                 </executions>
