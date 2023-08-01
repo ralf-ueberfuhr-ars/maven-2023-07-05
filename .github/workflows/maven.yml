@@ -27,8 +27,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Put parent POM into local repo
-      run: mvn -B install --file parent-pom.xml
     - name: Build with Maven
       run: mvn -B package --file pom.xml -Pexecutable
 
